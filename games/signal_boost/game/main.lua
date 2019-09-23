@@ -52,10 +52,10 @@ function love.load(arg)
     ball_image_left = love.graphics.newImage("assets/signal_left.png");
     bullet_image = love.graphics.newImage("assets/bullet.png");
     sky = love.graphics.newImage("assets/sky.png");
-    
-    e1 = love.graphics.newImage("assets/explosion_1.png");    
-    e2 = love.graphics.newImage("assets/explosion_2.png");    
-    e3 = love.graphics.newImage("assets/explosion_3.png"); 
+
+    e1 = love.graphics.newImage("assets/explosion_1.png");
+    e2 = love.graphics.newImage("assets/explosion_2.png");
+    e3 = love.graphics.newImage("assets/explosion_3.png");
     e4 = love.graphics.newImage("assets/explosion_4.png");
     e1:setFilter("nearest", "nearest");
     e2:setFilter("nearest", "nearest");
@@ -95,8 +95,8 @@ function love.draw()
     love.graphics.scale(scale, scale);
     camera = -ball:get_y() + res_y/2;
 
-    
-    --background    
+
+    --background
     skybox1:draw(camera);
     skybox2:draw(camera);
 
@@ -107,7 +107,7 @@ function love.draw()
         love.graphics.rectangle("fill", 0, (i + camera)%(res_y + 4) - 4, indent and 2 or 4, 4);
         love.graphics.rectangle("fill", indent and res_x - 2 or res_x - 4, (i + camera)%(res_y + 4) - 4, indent and 2 or 4, 4);
     end
-    
+
     for i,v in ipairs(enemies) do
         if(v:get_y() + v:get_height() + camera > 0 and v:get_y() + camera < res_y) then
             v:draw(camera);
@@ -129,7 +129,7 @@ function love.draw()
     if(not two_player) then
         p2:set_position(p2:get_x(), -camera);
     end
-        
+
     love.graphics.setColor({.5, 1, .5});
     height = string.format("%.0fm", camera + 5);
     font_width = font:getWidth(height) * .15;
@@ -189,7 +189,7 @@ function logic(dt_diff)
     if(lives <= 0) then
         gameover()
     end
-    --managing objects  
+    --managing objects
     manage_enemies(dt_diff);
     manage_entities(dt_diff);
     manage_skybox(dt_diff);
@@ -212,7 +212,7 @@ function logic(dt_diff)
     end
 end
 
-function reset_ball()    
+function reset_ball()
     p = love.math.random(2);
     if(p == 1) then
         ballspeed = .7;
@@ -298,7 +298,7 @@ function manage_skybox(dt_diff)
     if(skybox2:get_y() > -camera) then
         skybox2:move(0, -skybox2:get_height());
     end
-    
+
 end
 
 function love.keypressed(key)
@@ -313,7 +313,7 @@ function love.keypressed(key)
         p2:shoot();
     end
     if(key == '/') then
-        love.event.quit() 
+        love.event.quit()
     end
 end
 
