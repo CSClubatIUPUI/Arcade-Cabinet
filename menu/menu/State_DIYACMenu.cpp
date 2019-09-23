@@ -3,6 +3,9 @@
 
 #include <string>
 #include <cstdlib>
+#include <algorithm>
+#include <ctime>
+#include <cstdlib>
 
 State_DIYACMenu::State_DIYACMenu(SharedContext * ctx) : State_Base(ctx), games() {}
 State_DIYACMenu::~State_DIYACMenu() {}
@@ -137,7 +140,12 @@ void State_DIYACMenu::draw() {
     }
 }
 
+int myrandom (int i) {
+  return rand() % i;
+}
+
 void State_DIYACMenu::getGames() {
+    srand(time(nullptr));
     std::ifstream gamesStream;
     std::string filePath = "../../games/games.cfg";
     gamesStream.open(filePath);
@@ -224,6 +232,7 @@ void State_DIYACMenu::getGames() {
 
     }
     gamesStream.close();
+  std::random_shuffle(games.begin(), games.end(), myrandom);
 }
 
 std::string State_DIYACMenu::translateControlToButton(std::string & control) {
