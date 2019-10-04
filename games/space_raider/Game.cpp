@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 
-#define dpi 1
+#define dpi 2
 
 #define resourceCount 15
 #define enemyCount 20
@@ -15,16 +15,46 @@ Game::Game() : score(0), cargoCount(0), station(stationTexture, sf::Vector2f(100
       seeded = true;
   }
 
-  screenSize.x = sf::VideoMode::getDesktopMode().width;
-  screenSize.y = sf::VideoMode::getDesktopMode().height;
-  // screenSize.x = 800 * dpi;
-  // screenSize.y = 800 * dpi;
+  std::string musicFilePath = "assets/audio/music1.wav";
+  if (!music.openFromFile(musicFilePath)) {
+    std::cerr << "could not load music from file: " << musicFilePath << std::endl;
+    exit(1);
+  }
+  music.setVolume(50);
+  music.setLoop(true);
+  music.play();
+
+  std::string pickupBufferFilePath = "assets/audio/pickup1.wav";
+  if (!pickupBuffer.loadFromFile(pickupBufferFilePath)) {
+    std::cerr << "could not load pickup buffer from file: " << pickupBufferFilePath << std::endl;
+    exit(1);
+  }
+  pickupSound.setBuffer(pickupBuffer);
+
+  std::string explosionBufferFilePath = "assets/audio/explosion1.wav";
+  if (!explosionBuffer.loadFromFile(explosionBufferFilePath)) {
+    std::cerr << "could not load pickup buffer from file: " << explosionBufferFilePath << std::endl;
+    exit(1);
+  }
+  explosionSound.setBuffer(explosionBuffer);
+
+  std::string coinBufferFilePath = "assets/audio/coin3.wav";
+  if (!coinBuffer.loadFromFile(coinBufferFilePath)) {
+    std::cerr << "could not load pickup buffer from file: " << coinBufferFilePath << std::endl;
+    exit(1);
+  }
+  coinSound.setBuffer(coinBuffer);
+
+  // screenSize.x = sf::VideoMode::getDesktopMode().width;
+  // screenSize.y = sf::VideoMode::getDesktopMode().height;
+  screenSize.x = 800 * dpi;
+  screenSize.y = 800 * dpi;
 
   r = 50 * dpi;
   vel = 500 * dpi;
 
-  screen.create(sf::VideoMode(screenSize.x, screenSize.y), "Primer - SFML", sf::Style::Fullscreen);
-  // screen.create(sf::VideoMode(screenSize.x, screenSize.y), "Primer - SFML");
+  // screen.create(sf::VideoMode(screenSize.x, screenSize.y), "Primer - SFML", sf::Style::Fullscreen);
+  screen.create(sf::VideoMode(screenSize.x, screenSize.y), "Primer - SFML");
   std::string bgFilePath = "assets/images/bg.jpg";
   if (!bgTexture.loadFromFile(bgFilePath)) {
     std::cerr << "could not load bg from file: " << bgFilePath << std::endl;
@@ -129,7 +159,13 @@ void Game::handleEvent(sf::Event event) {
   if (event.type == sf::Event::Closed) {
     screen.close();
   } else if (event.type == sf::Event::KeyPressed) {
-    if (event.key.code == sf::Keyboard::Slash) {
+    if (event.key.code == sf::Keyboard::M) {
+      if (music.getStatus() == sf::Music::Playing) {
+        music.stop();
+      } else {
+        music.play();
+      }
+    } else if (event.key.code == sf::Keyboard::Slash) {
       screen.close();
     }
   }
@@ -242,6 +278,7 @@ void Game::handleInput(float fps) {
       if (cargoCount < cargoCapacity) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
           resources.erase(resources.begin() + i);
+          pickupSound.play();
           cargoCount++;
           setInfoText("Resource collected!");
         }
@@ -254,12 +291,13 @@ void Game::handleInput(float fps) {
   if (station.getSprite().getGlobalBounds().intersects(ship.getGlobalBounds())) {
     if (cargoCount > 0) {
       setInfoText("Press E to sell cargo");
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-      score += cargoCount;
-      scoreText.setString(std::to_string(score));
-      cargoCount = 0;
-      setInfoText("Resources sold, go get more!");
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+        score += cargoCount;
+        scoreText.setString(std::to_string(score));
+        cargoCount = 0;
+        setInfoText("Resources sold, go get more!");
+        coinSound.play();
+      }
     }
   }
 
@@ -269,10 +307,12 @@ void Game::handleInput(float fps) {
       if (lives <= 0) {
         setInfoText("Too much damage, you died!");
         gameOver = true;
+        music.stop();
       } else {
         setInfoText("That hurt! Try not to hit those. " + std::to_string(lives) + " lives left");
       }
       Explosion exp(explosionTexture, enemies[i].getPosition());
+      explosionSound.play();
       explosions.push_back(exp);
       enemies.erase(enemies.begin() + i);
     }
