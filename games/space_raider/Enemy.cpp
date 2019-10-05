@@ -3,7 +3,7 @@
 #include <ctime>
 #include "Enemy.hpp"
 
-#define dpi 2
+#define dpi 1
 
 Enemy::Enemy(sf::Texture & texture, sf::Vector2f position, sf::FloatRect space) : space(space) {
   static bool seeded = false;

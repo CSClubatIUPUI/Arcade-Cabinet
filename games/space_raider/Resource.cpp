@@ -1,6 +1,6 @@
 #include "Resource.hpp"
 
-#define dpi 2
+#define dpi 1
 
 Resource::Resource(sf::Texture & texture, sf::Vector2f position) {
   sprite.setTexture(texture);

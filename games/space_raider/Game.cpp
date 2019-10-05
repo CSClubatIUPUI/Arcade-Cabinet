@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 
-#define dpi 2
+#define dpi 1
 
 #define resourceCount 15
 #define enemyCount 20
@@ -45,16 +45,16 @@ Game::Game() : score(0), cargoCount(0), station(stationTexture, sf::Vector2f(100
   }
   coinSound.setBuffer(coinBuffer);
 
-  // screenSize.x = sf::VideoMode::getDesktopMode().width;
-  // screenSize.y = sf::VideoMode::getDesktopMode().height;
-  screenSize.x = 800 * dpi;
-  screenSize.y = 800 * dpi;
+  screenSize.x = sf::VideoMode::getDesktopMode().width;
+  screenSize.y = sf::VideoMode::getDesktopMode().height;
+  // screenSize.x = 800 * dpi;
+  // screenSize.y = 800 * dpi;
 
   r = 50 * dpi;
   vel = 500 * dpi;
 
-  // screen.create(sf::VideoMode(screenSize.x, screenSize.y), "Primer - SFML", sf::Style::Fullscreen);
-  screen.create(sf::VideoMode(screenSize.x, screenSize.y), "Primer - SFML");
+  screen.create(sf::VideoMode(screenSize.x, screenSize.y), "Primer - SFML", sf::Style::Fullscreen);
+  // screen.create(sf::VideoMode(screenSize.x, screenSize.y), "Primer - SFML");
   std::string bgFilePath = "assets/images/bg.jpg";
   if (!bgTexture.loadFromFile(bgFilePath)) {
     std::cerr << "could not load bg from file: " << bgFilePath << std::endl;

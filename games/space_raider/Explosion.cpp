@@ -1,6 +1,6 @@
 #include "Explosion.hpp"
 
-#define dpi 2
+#define dpi 1
 
 Explosion::Explosion(sf::Texture & texture, sf::Vector2f position) {
   sprite.setTexture(texture);
