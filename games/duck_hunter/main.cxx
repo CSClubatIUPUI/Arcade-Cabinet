@@ -146,7 +146,7 @@ int main() {
                     int directions[2];
                     directions[0] = -1;
                     directions[0] = 1;
-                    target.move(((rand() % 50) + 20) * directions[rand() % 2], -100);
+                    // target.move(((rand() % 50) + 20) * directions[rand() % 2], -100);
                     break;
                   case sf::Keyboard::Z:
                     gamePaused = !gamePaused;
@@ -247,6 +247,16 @@ int main() {
           break;
         }
         case States::GameOver: {
+          sf::Event event;
+          while (window.pollEvent(event)) {
+            switch (event.type) {
+              case sf::Event::KeyPressed: {
+                if (event.key.code == sf::Keyboard::Slash) {
+                  window.close();
+                }
+              }
+            }
+          }
           break;
         }
         default:
