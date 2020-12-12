@@ -1,7 +1,0 @@
-{
-	"title": "Tetris Battle",
-	"author": "Brandon Freeman",
-	"language": "JavaScript",
-	"command": "npm start",
-	"install_script": "npm install"
-}
