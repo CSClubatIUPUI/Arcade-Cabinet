@@ -8,6 +8,7 @@ onready var screenshot = $Preview/Screenshot
 onready var title = $Preview/Title
 onready var description = $Preview/Description
 
+# var gamesPath = "/home/danielpeach/Arcade-Cabinet/games"
 var gamesPath = "/Users/danielpeach/Godot/Arcade/Menu/games"
 var games = []
 
