@@ -1,0 +1,10 @@
+{
+  "name": "Pong3",
+  "credits": "Daniel Peach",
+  "description": "Use your paddle to reflect the ball back at your opponent. Don't let the ball get past you or your opponent scores!",
+  "language": "Godot, GDScript",
+  "logoPath": "logo.png",
+  "instructions": ["Use {{up}} and {{down}} to move your paddle."],
+  "start1": "open Pong.app",
+  "start2": "open Pong.app"
+}

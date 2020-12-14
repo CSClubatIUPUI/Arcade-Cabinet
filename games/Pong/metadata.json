@@ -1,0 +1,16 @@
+{
+  "name": "Pong",
+  "credits": "Daniel Peach",
+  "description": "Use your paddle to reflect the ball back at your opponent. Don't let the ball get past you or your opponent scores!",
+  "language": "Godot, GDScript",
+  "logoPath": "logo.png",
+  "instructions": [
+    "Use {{up}} and {{down}} to move your paddle",
+    "Press {{btn1}} or {{btn2}} to shoot",
+    "Press {{btn3}} bc i said to",
+    "This one will be really long so buckle your seatbelts and hold on and start reading and wow its still going and oh yeah a button: {{btn4}}, and finally, I need to add more text I guess {{esc}} because the screen is so feaking big and why didnt i use lorem ipsum?",
+    "{{btn5}} {{esc}} {{enter}} {{start1}} {{start2}}"
+  ],
+  "start1": "open Pong.app",
+  "start2": "open Pong.app"
+}
