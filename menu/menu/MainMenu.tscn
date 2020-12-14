@@ -1,0 +1,194 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://default_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://arrow_up.png" type="Texture" id=2]
+[ext_resource path="res://joystick_icon_white.png" type="Texture" id=3]
+[ext_resource path="res://enter.png" type="Texture" id=4]
+[ext_resource path="res://def.jpg" type="Texture" id=5]
+[ext_resource path="res://MainMenu.gd" type="Script" id=6]
+[ext_resource path="res://homespun.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 7 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.15
+color = Color( 0.25098, 0.25098, 0.25098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Header"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 29
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Header/HBoxContainer"]
+margin_left = 63.0
+margin_right = 625.0
+margin_bottom = 90.0
+custom_constants/separation = 12
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Header/HBoxContainer/HBoxContainer3"]
+margin_right = 80.0
+margin_bottom = 90.0
+custom_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Header/HBoxContainer/HBoxContainer3/HBoxContainer2"]
+margin_right = 35.0
+margin_bottom = 90.0
+custom_constants/separation = 7
+alignment = 1
+
+[node name="UpArrow" type="TextureRect" parent="Header/HBoxContainer/HBoxContainer3/HBoxContainer2/VBoxContainer"]
+margin_top = 19.0
+margin_right = 35.0
+margin_bottom = 41.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DownArrow" type="TextureRect" parent="Header/HBoxContainer/HBoxContainer3/HBoxContainer2/VBoxContainer"]
+margin_top = 48.0
+margin_right = 35.0
+margin_bottom = 70.0
+texture = ExtResource( 2 )
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Header/HBoxContainer/HBoxContainer3/HBoxContainer2"]
+margin_left = 45.0
+margin_right = 80.0
+margin_bottom = 90.0
+alignment = 1
+
+[node name="Joystick" type="TextureRect" parent="Header/HBoxContainer/HBoxContainer3/HBoxContainer2/VBoxContainer2"]
+margin_top = 17.0
+margin_right = 35.0
+margin_bottom = 73.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NavigationInstructions" type="Label" parent="Header/HBoxContainer/HBoxContainer3"]
+margin_left = 92.0
+margin_top = 33.0
+margin_right = 562.0
+margin_bottom = 56.0
+custom_fonts/font = ExtResource( 1 )
+text = "Use Joysticks to navigate through the games."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Header/HBoxContainer"]
+margin_left = 654.0
+margin_right = 960.0
+margin_bottom = 90.0
+custom_constants/separation = 7
+
+[node name="StartGameInstructions" type="Label" parent="Header/HBoxContainer/HBoxContainer"]
+margin_top = 33.0
+margin_right = 55.0
+margin_bottom = 56.0
+custom_fonts/font = ExtResource( 1 )
+text = "Press"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Header/HBoxContainer/HBoxContainer"]
+margin_left = 62.0
+margin_right = 97.0
+margin_bottom = 90.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Header/HBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 27.0
+margin_right = 35.0
+margin_bottom = 62.0
+texture = ExtResource( 4 )
+
+[node name="StartGameInstructions2" type="Label" parent="Header/HBoxContainer/HBoxContainer"]
+margin_left = 104.0
+margin_top = 33.0
+margin_right = 306.0
+margin_bottom = 56.0
+custom_fonts/font = ExtResource( 1 )
+text = "to select the game."
+
+[node name="Preview" type="ColorRect" parent="."]
+anchor_left = 0.75
+anchor_top = 0.15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.258824, 0.258824, 0.282353, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Screenshot" type="TextureRect" parent="Preview"]
+anchor_right = 1.0
+anchor_bottom = 0.35
+margin_bottom = 0.5
+rect_clip_content = true
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Preview"]
+anchor_left = 0.0289688
+anchor_top = 0.35098
+anchor_right = 0.0289688
+anchor_bottom = 0.35098
+margin_left = 7.58398
+margin_top = 16.0
+margin_right = 248.584
+margin_bottom = 76.0
+custom_fonts/font = ExtResource( 1 )
+text = "Game Title"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="Preview"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 247.0
+margin_bottom = 123.0
+custom_fonts/font = SubResource( 1 )
+text = "Description"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemList" type="ItemList" parent="."]
+anchor_top = 0.15
+anchor_right = 0.75
+anchor_bottom = 1.0
+margin_right = -6.10352e-05
+custom_fonts/font = ExtResource( 1 )
+fixed_icon_size = Vector2( 125, 125 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="item_activated" from="ItemList" to="." method="_on_ItemList_item_activated"]
+[connection signal="item_selected" from="ItemList" to="." method="select_game"]
